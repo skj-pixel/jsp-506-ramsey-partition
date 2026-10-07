@@ -1,20 +1,68 @@
-# JSP-000506 — Random graph χ vs χ_b (Petkov + GPT-5.6 2026 stronger lower bound)
+# JSP-000506 — Lean 4.20 scaffold for In a random graph, how much smaller than the chrom...
 
-## Problem
-In a random graph G(n, 1/2), how much smaller than the chromatic number is
-the minimum number of parts in a partition into cliques and independent sets
-(χ_b(G), the biclique partition number, or equivalently 1/clique cover number)?
+> **Problem (upstream JSP-000506)**: In a random graph, how much smaller than the chromatic number is the minimum number of parts in a partition into cliques and independent sets?
+> **Solver**: Petkov + GPT-5.6 (2024) — stronger lower bound for cochromatic number vs chromatic number
+> **JSP bounty**: USD $100
+> **Upstream status** ([TheJustinSunPrize/awards](https://github.com/TheJustinSunPrize/awards/blob/main/problems/catalog-0501-0600.md#JSP-000506)): **Solved, Lean proof: No, Eligible to claim: No**
 
-Reference: Petkov and GPT-5.6 (2026), stronger lower bound.
+## What this repository is
 
-## Status
-JSP catalog notes that the original bounty ($1000) was claimed by the
-Petkov+GPT-5.6 paper contribution; Lean proof is still open.  This
-scaffold sets up the abstract, finite-carrier version using `Finset ℕ`
-as the vertex set, with the main theorem left as `sorry`.
+This is a **Lean 4.20.0 + Mathlib v4.20.0 scaffold** for the JSP outer theorem.
+The file structure (lake project, lean-toolchain, lakefile, single `JSP506.lean`)
+is published so that a future Lean formalization team can clone this repository,
+fill in the `sorry` placeholders, and produce a verified Lean proof.
 
-## Build
+**This is NOT a Lean proof.** Every `theorem` in `JSP506.lean`
+ends with `:= by sorry`. Per the JSP `docs/verification.md` policy:
+
+> A Lean submission without the complete proof is invalid and will not be accepted.
+
+## Files
+
 ```
-cd D:\evox-main\JustinSunPrize\jsp-506-ramsey-partition
+JSP506.lean    -- Outer statement with `sorry`
+README.md              -- This file
+lakefile.toml          -- Lean 4 build config (lake)
+lean-toolchain.json     -- Pinned toolchain: Lean v4.20.0
+lake-manifest.json     -- Pinned dependencies: mathlib v4.20.0
+.gitignore             -- Excludes `.lake/` build cache
+```
+
+## Build (to verify the scaffold compiles)
+
+```sh
 lake build
 ```
+
+## Math content
+
+Outer statement: chromatic-cochromatic gap in random graphs
+
+The Lean file states the outer theorem in a form suitable for filling in with
+Mathlib lemmas. To make this a complete Lean proof, a team would need to:
+
+1. Port the corresponding published paper (e.g. Petkov + GPT-5.6 (2024) — stronger lower bound for cochromatic number vs chromatic number).
+2. For each lemma in the paper, find or build a corresponding Mathlib
+   statement.
+3. Replace `sorry` with the corresponding Lean tactic proof.
+
+## References
+
+- Mathematical proof: see the publication reference cited above
+- Upstream JSP catalog: https://github.com/TheJustinSunPrize/awards/blob/main/problems/catalog-0501-0600.md#JSP-000506
+- Attribution policy: https://github.com/TheJustinSunPrize/awards/blob/main/docs/attribution.md
+
+## Submission path
+
+To claim the bounty for JSP-000506, the Lean author (or a contributor with
+attributable credit on the Lean repo) must:
+
+1. Fill the `sorry` in `JSP506.lean` and verify the proof with
+   `lake build`.
+2. Open a PR to `TheJustinSunPrize/awards` adding the Lean source URL to the
+   catalog entry.
+3. After merge, open a claim-award issue from the Lean author's own GitHub
+   account using the `claim-award.yml` template.
+4. Email identity-verification materials to `thejustinsunprize@hejustinsun.com`.
+
+None of these steps can be automated from an agent sandbox.
